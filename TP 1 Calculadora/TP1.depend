@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1585448457 source:c:\users\fran_\desktop\tp1\main.c
+	"Calculadora.h"
+
+1585507788 c:\users\fran_\desktop\tp1\calculadora.h
+	<stdio.h>
+	<stdlib.h>
+
+1585508609 source:c:\users\fran_\desktop\tp1\calculadora.c
+	"Calculadora.h"
+
+1585693439 source:c:\users\fran_\desktop\utn\tp1\main.c
+	"Calculadora.h"
+
+1585857826 c:\users\fran_\desktop\utn\tp1\calculadora.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+
+1586173019 source:c:\users\fran_\desktop\utn\tp1\calculadora.c
+	"Calculadora.h"
+

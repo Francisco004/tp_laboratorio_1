@@ -12,8 +12,8 @@ void menu_Calculadora()
     float suma;
     float resta;
     float division;
-    float factorialUno;
-    float factorialDos;
+    long int factorialUno;
+    long int factorialDos;
     float multiplicacion;
 
     primero = 0;
@@ -74,8 +74,8 @@ void menu_Calculadora()
                 resta = operacion_Resta(primero,segundo);
                 multiplicacion = operacion_Multiplicacion(primero,segundo);
                 division = operacion_Division(primero,segundo);
-                factorialUno = operacion_Factorial(primero);
-                factorialDos = operacion_Factorial(segundo);
+                factorialUno = operacion_Factorial_Primero(primero);
+                factorialDos = operacion_Factorial_Segundo(primero,segundo);
 
                 system("pause");
 
@@ -111,20 +111,20 @@ void menu_Calculadora()
                         printf("* El resultado de %.2f / %.2f es: %.2f            \n",primero,segundo,division);
                     }
                     printf("*                                             \n");
-                    if(primero < 0)
+                    if(segundo == 0)
                     {
                     printf("* Error, no se puede hacer factorial negativo...\n");
                     }else
                     {
-                        printf("* El resultado de el factorial de %.2f es: %.0f \n",primero,factorialUno);
+                        printf("* El resultado de el factorial de %.0f es: %ld \n",primero,factorialUno);
                     }
                     printf("*                                             \n");
-                    if(segundo < 0)
+                    if(segundo == 0)
                     {
                     printf("* Error, no se puede hacer factorial negativo...\n");
                     }else
                     {
-                        printf("* El resultado de el factorial de %.2f es: %.0f \n",segundo,factorialDos);
+                        printf("* El resultado de el factorial de %.0f es: %ld \n",segundo,factorialDos);
 
                     }
                     printf("*****************************************************\n");
@@ -204,7 +204,7 @@ int validar_Numeros(char numero[])
     int i;
     for(i = 0; i < strlen(numero); i++)
     {
-        if(! (numero[i] > 44 && numero[i] < 58))
+        if(! (numero[i] > 45 && numero[i] < 58))
         {
             system("cls");
             printf("SOLO INGRESE NUMEROS...\n\n\n");
@@ -243,20 +243,40 @@ float operacion_Division(float primero,float segundo)
     return resultado;
 }
 
-float operacion_Factorial(float numero)
+unsigned operacion_Factorial_Primero(float primero)
 {
-    int factorialUno;
-    long long int factorialFinal;
+    int i;
+    unsigned long long factorial = 1;
 
-    factorialFinal=1;
 
-    if (numero >= 0)
+    if (primero < 0)
     {
-        for (factorialUno = numero; factorialUno > 1; factorialUno--)
+        printf("Error! No se puede factorizar un numero negativo.");
+    }
+    else
+    {
+        for (i = 1; i <= primero; ++i)
         {
-            factorialFinal = factorialFinal * factorialUno;
+            factorial *= i;
         }
     }
 
-    return factorialFinal;
+    return factorial;
+}
+
+float operacion_Factorial_Segundo(float primero,float segundo)
+{
+    long long int factorialB;
+    int factorialDos;
+    factorialB=1;
+
+    if (segundo >= 0)
+    {
+        for (factorialDos = segundo; factorialDos > 1; factorialDos--)
+        {
+            factorialB = factorialB * factorialDos;
+        }
+    }
+
+    return factorialB;
 }
