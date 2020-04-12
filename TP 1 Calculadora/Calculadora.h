@@ -9,15 +9,15 @@ void menu_Calculadora(void);
 
 float primer_Numero(void);
 float segundo_Numero(void);
-
 int validar_Numeros(char []);
 
 float operacion_Suma(float ,float );
 float operacion_Resta(float ,float );
+long long int operacion_Factorial(int);
 float operacion_Division(float ,float );
 float operacion_Multiplicacion(float ,float );
-unsigned operacion_Factorial_Primero(float);
-float operacion_Factorial_Segundo(float ,float );
+void mostrarResultados(float, float, float, float, float, float);
+
 
 
 #endif // CALCULADORA_H_INCLUDED
