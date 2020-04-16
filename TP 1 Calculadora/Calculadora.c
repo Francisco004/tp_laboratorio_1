@@ -5,9 +5,11 @@ void menu_Calculadora()
     int opcion;
     float primero;
     float segundo;
+
     int banderaUno;
     int banderaDos;
     int banderaTres;
+
     int convertirAEntero;
 
     float suma;
@@ -17,6 +19,8 @@ void menu_Calculadora()
     unsigned long long factorialUno;
     unsigned long long factorialDos;
 
+    int mostrarX = 0;
+    int mostrarXX = 0;
     primero = 0;
     segundo = 0;
 
@@ -26,9 +30,21 @@ void menu_Calculadora()
         printf("***********************************************\n");
         printf("******  Calculadora Francisco Rocha 1-A  ******\n");
         printf("***********************************************\n");
+        if(mostrarX == 0)
+        {
+        printf("* 1-Ingresar 1er operando (A = X)             \n");
+        }else
+        {
         printf("* 1-Ingresar 1er operando (A = %.2f)          \n",primero);
+        }
         printf("*                                             \n");
+        if(mostrarXX == 0)
+        {
+        printf("* 2-Ingresar 2do operando (A = X)             \n");
+        }else
+        {
         printf("* 2-Ingresar 2do operando (B = %.2f)          \n",segundo);
+        }
         printf("*                                             \n");
         printf("* 3-Calcular todas las operaciones            \n");
         printf("*   *Calcula la suma (%.2f + %.2f)            \n",primero,segundo);
@@ -55,6 +71,7 @@ void menu_Calculadora()
             banderaUno = 1;
             banderaTres = 0;
             primero = primer_Numero();
+            mostrarX = 1;
             break;
 
             //////////////////////////////////////////////////////////////////////Ingreso del segundo numero.
@@ -63,6 +80,7 @@ void menu_Calculadora()
             banderaDos = 1;
             banderaTres = 0;
             segundo = segundo_Numero();
+            mostrarXX = 1;
             break;
 
             //////////////////////////////////////////////////////////////////////Calculo las operaciones.
@@ -75,15 +93,20 @@ void menu_Calculadora()
                 printf("Calculando todas las operaciones.....\n");
 
                 suma = operacion_Suma(primero,segundo);
+
                 resta = operacion_Resta(primero,segundo);
+
                 multiplicacion = operacion_Multiplicacion(primero,segundo);
+
                 division = operacion_Division(primero,segundo);
+
                 convertirAEntero = (int)primero;
                 factorialUno = operacion_Factorial(convertirAEntero);
+
                 convertirAEntero = (int)segundo;
                 factorialDos = operacion_Factorial(convertirAEntero);
-                system("pause");
 
+                system("pause");
             }
             else
                 {
@@ -101,6 +124,8 @@ void menu_Calculadora()
                 {
                     mostrarResultados(primero,segundo,suma,resta,division,multiplicacion);
 
+                    /////////////////////Factorial primero
+
                     if(primero < 0)
                     {
                     printf("* Error, no se puede hacer factorial negativo...\n");
@@ -113,6 +138,7 @@ void menu_Calculadora()
                     }
                     printf("*                                             \n");
 
+                    /////////////////////Factorial segundo
 
                     if(segundo < 0)
                     {
@@ -158,6 +184,10 @@ void menu_Calculadora()
     }while (opcion != 5);
 }
 
+
+
+
+
 float primer_Numero()
 {
     char cadenaNumero[20];
@@ -173,6 +203,10 @@ float primer_Numero()
 
     return valido;
 }
+
+
+
+
 
 float segundo_Numero()
 {
@@ -190,7 +224,11 @@ float segundo_Numero()
     return valido;
 }
 
-int validar_Numeros(char numero[])
+
+
+
+
+float validar_Numeros(char numero[])
 {
     int i;
     int numeroFinal;
@@ -211,6 +249,10 @@ int validar_Numeros(char numero[])
     return numeroFinal;
 }
 
+
+
+
+
 float operacion_Suma(float primero,float segundo)
 {
     float resultado;
@@ -225,6 +267,10 @@ float operacion_Resta(float primero,float segundo)
     return resultado;
 }
 
+
+
+
+
 float operacion_Multiplicacion(float primero,float segundo)
 {
     float resultado;
@@ -232,12 +278,20 @@ float operacion_Multiplicacion(float primero,float segundo)
     return resultado;
 }
 
+
+
+
+
 float operacion_Division(float primero,float segundo)
 {
     float resultado;
     resultado = primero / segundo;
     return resultado;
 }
+
+
+
+
 
 long long int operacion_Factorial(int numero)
 {
@@ -257,6 +311,10 @@ long long int operacion_Factorial(int numero)
 
     return fact;
 }
+
+
+
+
 
 void mostrarResultados(float numA, float numB, float sum, float res, float div, float mult)
 {
