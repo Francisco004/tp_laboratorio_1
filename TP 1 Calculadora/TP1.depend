@@ -57,3 +57,12 @@
 1587062217 source:c:\users\fran_\desktop\as\tp 1 calculadora\calculadora.c
 	"Calculadora.h"
 
+1587252495 source:c:\users\fran_\desktop\wadawawd\tp 1 calculadora\main.c
+	"Calculadora.h"
+
+1587252494 c:\users\fran_\desktop\wadawawd\tp 1 calculadora\calculadora.h
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+

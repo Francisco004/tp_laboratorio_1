@@ -2,7 +2,7 @@
 
 void menu_Calculadora()
 {
-    int opcion;
+    char opcion;
     float primero;
     float segundo;
 
@@ -61,12 +61,12 @@ void menu_Calculadora()
         printf("***********************************************\n\n");
 
         printf("Que opcion desea seleccionar: ");
-        scanf(" %d",&opcion);
+        scanf(" %c",&opcion);
 
         switch (opcion)
         {
             //////////////////////////////////////////////////////////////////////Ingreso del primer numero.
-            case 1:
+            case '1':
             system("cls");
             banderaUno = 1;
             banderaTres = 0;
@@ -75,7 +75,7 @@ void menu_Calculadora()
             break;
 
             //////////////////////////////////////////////////////////////////////Ingreso del segundo numero.
-            case 2:
+            case '2':
             system("cls");
             banderaDos = 1;
             banderaTres = 0;
@@ -84,7 +84,7 @@ void menu_Calculadora()
             break;
 
             //////////////////////////////////////////////////////////////////////Calculo las operaciones.
-            case 3:
+            case '3':
             system("cls");
             if(banderaUno == 1 && banderaDos == 1)
             {
@@ -116,7 +116,7 @@ void menu_Calculadora()
             break;
 
             //////////////////////////////////////////////////////////////////////Muestro los resultados.
-            case 4:
+            case '4':
             system("cls");
             if(banderaUno == 1 && banderaDos == 1)
             {
@@ -168,7 +168,7 @@ void menu_Calculadora()
             break;
 
             //////////////////////////////////////////////////////////////////////Cierro la consola.
-            case 5:
+            case '5':
             system("cls");
             printf("Cerrando consola...\n");
             break;
@@ -181,7 +181,7 @@ void menu_Calculadora()
             break;
         }
 
-    }while (opcion != 5);
+    }while (opcion != '5');
 }
 
 
