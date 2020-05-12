@@ -4,11 +4,12 @@ int main()
 {
     char seguir[10];
     int opcionCuatro;
-    int banderaAlta = 0;
+    int banderaAlta = 1;
 
     eEmpleado unEmpleado[TAM];
 
     inicializarEmpleados(unEmpleado, TAM);
+    hardcodearEmpelados(unEmpleado);
 
     do
     {
@@ -45,7 +46,6 @@ int main()
             {
                 system("cls");
                 darDeBajaUnEmpleado(unEmpleado, TAM);
-                banderaAlta--;
                 system("pasue");
             }
             else
@@ -62,7 +62,7 @@ int main()
             if(banderaAlta > 0)
             {
                 system("cls");
-                printf("1- Listado de los empleados ordenados alfabéticamente por Apellido y Sector.\n2- Total y promedio de los salarios, y cuántos empleados superan el salario promedio. \nElija una opcion: ");
+                printf("1- Listado de los empleados ordenados alfabeticamente por Apellido y Sector.\n2- Total y promedio de los salarios, y cuantos empleados superan el salario promedio. \nElija una opcion: ");
                 scanf(" %d",&opcionCuatro);
 
                 switch(opcionCuatro)
@@ -70,7 +70,7 @@ int main()
                 case 1:
                     system("cls");
                     ordenarEmpleados(unEmpleado, TAM);
-                    printf("              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
+                    printf("   ID             APELLIDO               NOMBRE         SALARIO     SECTOR    \n");
                     mostrarUnEmpleados(unEmpleado, TAM);
                     printf("\n");
                     system("pause");

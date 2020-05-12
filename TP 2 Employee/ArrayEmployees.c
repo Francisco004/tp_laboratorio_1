@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////Mostrar Empleado
 void mostrarUnEmpleado(eEmpleado empleado)
 {
-    printf( "%20s %20s %15.2f %10d",empleado.lastName ,empleado.name ,empleado.salary ,empleado.sector );
+    printf( "%5d %20s %20s %15.2f %10d\n",empleado.id,empleado.lastName,empleado.name,empleado.salary,empleado.sector );
 }
 
 
@@ -41,21 +41,30 @@ void ordenarEmpleados(eEmpleado empleado[], int tam)
 {
     eEmpleado auxempleado;
 
-    for(int i = 0; i < tam - 1; i++)
+    for (int i = 0; i < tam - 1; i++)
     {
-        for(int j = i + 1; j < tam; j++)
+        if(empleado[i].isEmpty == LLENO)
         {
-            if(strcmp(empleado[i].lastName, empleado[i].lastName) > 0)
+            for(int j = i+1; j < tam; j++)
             {
-                auxempleado = empleado[i];
-                empleado[i] = empleado[j];
-                empleado[j] = auxempleado;
-            }
-            else if (strcmp(empleado[i].lastName, empleado[i].lastName) == 0 && empleado[i].sector > empleado[j].sector)
-            {
-                auxempleado = empleado[i];
-                empleado[i] = empleado[j];
-                empleado[j] = auxempleado;
+                if(empleado[j].isEmpty == LLENO)
+                {
+                    if (strcmp(empleado[i].lastName, empleado[j].lastName) == 0)
+                    {
+                        if(empleado[i].sector > empleado[j].sector)
+                        {
+                            auxempleado = empleado[i];
+                            empleado[i] = empleado[j];
+                            empleado[j] = auxempleado;
+                        }
+                    }
+                    else if (strcmp(empleado[i].lastName, empleado[j].lastName) > 0)
+                    {
+                        auxempleado = empleado[i];
+                        empleado[i] = empleado[j];
+                        empleado[j] = auxempleado;
+                    }
+                }
             }
         }
     }
@@ -234,30 +243,6 @@ int buscarLibre(eEmpleado unEmpleado[], int tam)
 
 
 
-/////////////////////////////////////////////////////////////////////////Buscar ID
-int buscarID(eEmpleado unEmpleado[], int tam, int idIngresada)
-{
-    int repetido = -1;
-
-    for(int i = 0; i < tam; i++)
-    {
-        if(unEmpleado[i].isEmpty == LLENO && unEmpleado[i].id == idIngresada)
-        {
-            printf("Ya existe un empleado con esta id, pruebe de nuevo...\n");
-            system("pause");
-            repetido = 1;
-            break;
-        }
-    }
-
-    return repetido;
-}
-
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////Baja Empleado
 void darDeBajaUnEmpleado(eEmpleado unEmpleado[], int tam)
 {
@@ -272,7 +257,7 @@ void darDeBajaUnEmpleado(eEmpleado unEmpleado[], int tam)
         if (unEmpleado[i].isEmpty == LLENO && unEmpleado[i].id == id)
         {
             printf("\nEl empleado que selecciono es: \n");
-            printf("              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
+            printf("   ID              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
             mostrarUnEmpleado(unEmpleado[i]);
 
             printf("\n\nDesea dar de baja a ese empleado? S = SI: ");
@@ -359,7 +344,7 @@ void informarPromedioSalarios(eEmpleado unEmpleado[], int tam)
             {
                 printf("\nLos salarios que superan el PROMEDIO son: \n\n");
             }
-            printf("              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
+            printf("   ID              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
             bandera = 1;
             break;
         }
@@ -417,7 +402,7 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
         {
             encontro = 1;
             printf("\nEL EMPLEADO INGRESADO ES:\n");
-            printf("              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
+            printf("   ID              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
             mostrarUnEmpleado(unEmpleado[i]);
 
             printf("\n\nQuiere modificar este empleado? 'S' = SI: ");
@@ -540,5 +525,30 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
         system("cls");
         printf("No se encontro un empleado con esta id...\n");
         system("pause");
+    }
+}
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////Hardcodear Empleados
+void hardcodearEmpelados(eEmpleado empleados[])
+{
+    int idd[10] = {1,2,3,4,5,6,7,8,9,10};
+    int sectorr[10] = {5,3,1,3,2,1,4,2,1,2};
+    float salarioo[10] = {25000,20000,45000,30000,15000,12500,87000,6000,75000,11600};
+    char nombre[51][10] = {"Pepe","Roberto","Pepe","Ricardo","Enrique","Joaquin","Pedro","Juan","Francisco","Pepino"};
+    char apellido[51][10] = {"Pepe","Roberto","Pepe","Ricardo","Enrique","Joaquin","Pedro","Juan","Francisco","Pepino"};
+
+    for ( int i = 0; i < 10; i++ )
+    {
+        empleados[i].id = idd[i];
+        empleados[i].isEmpty = LLENO;
+        empleados[i].sector = sectorr[i];
+        empleados[i].salary = salarioo[i];
+        strcpy(empleados[i].name, nombre[i]);
+        strcpy(empleados[i].lastName, apellido[i]);
     }
 }
