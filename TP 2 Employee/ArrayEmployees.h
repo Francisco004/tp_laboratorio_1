@@ -6,8 +6,8 @@
 #include <string.h>
 #include <ctype.h>
 #define TAM 1000
-#define VACIO 0
-#define LLENO 1
+#define VACIO -1
+#define LLENO 0
 
 typedef struct
 {
@@ -18,7 +18,7 @@ typedef struct
     char name[51];
     char lastName[51];
 
-} eEmpleado;
+} sEmployee;
 
 
 
@@ -41,100 +41,94 @@ int validarString(char []);
 
 /** \brief Busca la id para un empleado verificando el estado de los empleados
  *
- * \param unEmpleado[] eEmpleado el empleado
- * \param int tamaño a recorrer
+ * \param List[] sEmployee el empleado
+ * \param int tamanio a recorrer
  * \return int retorna el lugar libre para la id
  *
  */
-int buscarLibre(eEmpleado unEmpleado[], int);
+int findEmployeeById(sEmployee List[], int);
+
+
+
 
 
 /** \brief inicializa a todos los empleados con datos en 0
  *
- * \param empleados[] eEmpleado lista de empleados
- * \param int tamaño a recorrer
+ * \param List[] sEmployee lista de empleados
+ * \param int tamanio a recorrer
  * \return void
  *
  */
-void inicializarEmpleados(eEmpleado empleados[], int);
+int initEmployees(sEmployee* empleados, int);
 
 
-/** \brief Hardcodea los empleados
+/** \brief Da de alta un empleado calculando el id automaticamente
  *
- * \param empleados[] eEmpleado lista de los empleados
+ * \param List[] sEmployee un empleado
+ * \param int tamanio de iteraciones
  * \return void
  *
  */
-void hardcodearEmpelados(eEmpleado empleados[]);
+void addEmployees(sEmployee List[], int);
+
+
+/** \brief Da de baja un empleado ingresando la id
+ *
+ * \param List[] sEmployee un empleado
+ * \param int tamanio de iteraciones
+ * \return void
+ *
+ */
+void removeEmployee(sEmployee List[], int);
+
+
+/** \brief Modifica un empleado ingresando la id
+ *
+ * \param List[] sEmployee un empleado
+ * \param int tamanio de iteraciones
+ * \return void
+ *
+ */
+void modifyEmployee(sEmployee List[], int);
+
+
 
 
 
 /** \brief Muestra un empleado
  *
- * \param empleado eEmpleado un empleado
+ * \param empleado sEmployee un empleado
  * \return void
  *
  */
-void mostrarUnEmpleado(eEmpleado empleado);
+void printOneEmployee(sEmployee empleado);
+
+/** \brief Muestra todos los empleados
+ *
+ * \param empleado[] sEmployee un empleado
+ * \param int tamanio de iteraciones
+ * \return void
+ *
+ */
+void printEmployees(sEmployee List[], int);
+
+/** \brief Calcula y muestra el promedio de los salarios
+ *
+ * \param List[] sEmployee un empleado
+ * \param int tamanio de iteraciones
+ * \return void
+ *
+ */
+void printAverageSalaries(sEmployee List[], int);
 
 
 /** \brief Ordena los empleados
  *
- * \param empleado[] eEmpleado listado de empleados
- * \param int tamaño de iteraciones
+ * \param empleado[] sEmployee listado de empleados
+ * \param int tamanio de iteraciones
  * \return void
  *
  */
-void ordenarEmpleados(eEmpleado empleado[], int);
-
-
-/** \brief Da de alta un empleado calculando el id automaticamente
- *
- * \param unEmpleado[] eEmpleado un empleado
- * \param int tamaño de iteraciones
- * \return void
- *
- */
-void altaDeUnEmpleado(eEmpleado unEmpleado[], int);
-
-
-/** \brief Muestra todos los empleados
- *
- * \param empleado[] eEmpleado un empleado
- * \param int tamaño de iteraciones
- * \return void
- *
- */
-void mostrarUnEmpleados(eEmpleado empleado[], int);
-
-
-/** \brief Da de baja un empleado ingresando la id
- *
- * \param unEmpleado[] eEmpleado un empleado
- * \param int tamaño de iteraciones
- * \return void
- *
- */
-void darDeBajaUnEmpleado(eEmpleado unEmpleado[], int);
-
-
-/** \brief Modifica un empleado ingresando la id
- *
- * \param unEmpleado[] eEmpleado un empleado
- * \param int tamaño de iteraciones
- * \return void
- *
- */
-void modificarUnEmpleado(eEmpleado unEmpleado[], int);
-
-
-/** \brief Calcula y muestra el promedio de los salarios
- *
- * \param unEmpleado[] eEmpleado un empleado
- * \param int tamaño de iteraciones
- * \return void
- *
- */
-void informarPromedioSalarios(eEmpleado unEmpleado[], int);
+void sortEmployees(sEmployee empleado[], int);
 
 #endif // BIBLIOTECAEMPLEADO_H_INCLUDED

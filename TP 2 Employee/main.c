@@ -2,14 +2,13 @@
 
 int main()
 {
-    char seguir[10];
-    int opcionCuatro;
-    int banderaAlta = 1;
+    char continuee[10];
+    int optionFour;
+    int Flag = 1;
 
-    eEmpleado unEmpleado[TAM];
+    sEmployee List[TAM];
 
-    inicializarEmpleados(unEmpleado, TAM);
-    hardcodearEmpelados(unEmpleado);
+    initEmployees(List, TAM);
 
     do
     {
@@ -19,16 +18,16 @@ int main()
         case 1:
             ////////////////////////////////////////////////////ALTA EMPLEADO
             system("cls");
-            altaDeUnEmpleado(unEmpleado, TAM);
-            banderaAlta++;
+            addEmployees(List, TAM);
+            Flag++;
             break;
 
         case 2:
             ////////////////////////////////////////////////////MODIFICAR EMPLEADO
-            if(banderaAlta > 0)
+            if(Flag > 0)
             {
                 system("cls");
-                modificarUnEmpleado(unEmpleado, TAM);
+                modifyEmployee(List, TAM);
                 system("pasue");
             }
             else
@@ -42,10 +41,10 @@ int main()
 
         case 3:
             ////////////////////////////////////////////////////BORRAR EMPLEADO
-            if(banderaAlta > 0)
+            if(Flag > 0)
             {
                 system("cls");
-                darDeBajaUnEmpleado(unEmpleado, TAM);
+                removeEmployee(List, TAM);
                 system("pasue");
             }
             else
@@ -59,25 +58,25 @@ int main()
 
         case 4:
             ////////////////////////////////////////////////////LISTAR EMPLEADO
-            if(banderaAlta > 0)
+            if(Flag > 0)
             {
                 system("cls");
                 printf("1- Listado de los empleados ordenados alfabeticamente por Apellido y Sector.\n2- Total y promedio de los salarios, y cuantos empleados superan el salario promedio. \nElija una opcion: ");
-                scanf(" %d",&opcionCuatro);
+                scanf(" %d",&optionFour);
 
-                switch(opcionCuatro)
+                switch(optionFour)
                 {
                 case 1:
                     system("cls");
-                    ordenarEmpleados(unEmpleado, TAM);
+                    sortEmployees(List, TAM);
                     printf("   ID             APELLIDO               NOMBRE         SALARIO     SECTOR    \n");
-                    mostrarUnEmpleados(unEmpleado, TAM);
+                    printEmployees(List, TAM);
                     printf("\n");
                     system("pause");
                     break;
                 case 2:
                     system("cls");
-                    informarPromedioSalarios(unEmpleado, TAM);
+                    printAverageSalaries(List, TAM);
                     system("pause");
                     break;
                 default:
@@ -101,11 +100,11 @@ int main()
                 system("cls");
                 printf("Seguro que desea salir? 'S' = si: ");
                 fflush(stdin);
-                scanf(" %s",seguir);
+                scanf(" %s",continuee);
 
-                strupr(seguir);
+                strupr(continuee);
 
-                if (strcmp(seguir,"S") == 0)
+                if (strcmp(continuee,"S") == 0)
                 {
                     printf("Cerrando consola...\n");
                 }
@@ -120,7 +119,7 @@ int main()
         }
 
     }
-    while (strcmp(seguir,"S") != 0);
+    while (strcmp(continuee,"S") != 0);
 
     return 0;
 }

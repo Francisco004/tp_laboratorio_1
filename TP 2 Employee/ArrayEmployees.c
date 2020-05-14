@@ -1,9 +1,9 @@
 #include "ArrayEmployees.h"
 
 /////////////////////////////////////////////////////////////////////////Mostrar Empleado
-void mostrarUnEmpleado(eEmpleado empleado)
+void printOneEmployee(sEmployee List)
 {
-    printf( "%5d %20s %20s %15.2f %10d\n",empleado.id,empleado.lastName,empleado.name,empleado.salary,empleado.sector );
+    printf( "%5d %20s %20s %15.2f %10d\n",List.id,List.lastName,List.name,List.salary,List.sector );
 }
 
 
@@ -12,15 +12,15 @@ void mostrarUnEmpleado(eEmpleado empleado)
 
 
 /////////////////////////////////////////////////////////////////////////Mostrar Empleados
-void mostrarUnEmpleados(eEmpleado empleado[], int tam)
+void printEmployees(sEmployee List[], int len)
 {
     int vandera = VACIO;
 
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; i < len; i++)
     {
-        if(empleado[i].isEmpty == LLENO)
+        if(List[i].isEmpty == LLENO)
         {
-            mostrarUnEmpleado(empleado[i]);
+            printOneEmployee(List[i]);
             vandera = LLENO;
         }
     }
@@ -37,32 +37,32 @@ void mostrarUnEmpleados(eEmpleado empleado[], int tam)
 
 
 /////////////////////////////////////////////////////////////////////////Ordenar Empleado
-void ordenarEmpleados(eEmpleado empleado[], int tam)
+void sortEmployees(sEmployee List[], int len)
 {
-    eEmpleado auxempleado;
+    sEmployee auxempleado;
 
-    for (int i = 0; i < tam - 1; i++)
+    for (int i = 0; i < len - 1; i++)
     {
-        if(empleado[i].isEmpty == LLENO)
+        if(List[i].isEmpty == LLENO)
         {
-            for(int j = i+1; j < tam; j++)
+            for(int j = i+1; j < len; j++)
             {
-                if(empleado[j].isEmpty == LLENO)
+                if(List[j].isEmpty == LLENO)
                 {
-                    if (strcmp(empleado[i].lastName, empleado[j].lastName) == 0)
+                    if (strcmp(List[i].lastName, List[j].lastName) == 0)
                     {
-                        if(empleado[i].sector > empleado[j].sector)
+                        if(List[i].sector > List[j].sector)
                         {
-                            auxempleado = empleado[i];
-                            empleado[i] = empleado[j];
-                            empleado[j] = auxempleado;
+                            auxempleado = List[i];
+                            List[i] = List[j];
+                            List[j] = auxempleado;
                         }
                     }
-                    else if (strcmp(empleado[i].lastName, empleado[j].lastName) > 0)
+                    else if (strcmp(List[i].lastName, List[j].lastName) > 0)
                     {
-                        auxempleado = empleado[i];
-                        empleado[i] = empleado[j];
-                        empleado[j] = auxempleado;
+                        auxempleado = List[i];
+                        List[i] = List[j];
+                        List[j] = auxempleado;
                     }
                 }
             }
@@ -76,17 +76,20 @@ void ordenarEmpleados(eEmpleado empleado[], int tam)
 
 
 /////////////////////////////////////////////////////////////////////////Inicializar Empleados
-void inicializarEmpleados(eEmpleado empleados[], int tam)
+int initEmployees(sEmployee* List, int len)
 {
-    for ( int i = 0; i < tam; i++ )
+    int retorno = -1;
+    int i;
+    if(len > 0 && List != NULL)
     {
-        empleados[i].id = 0;
-        empleados[i].sector = 0;
-        empleados[i].salary = 0;
-        empleados[i].isEmpty = VACIO;
-        strcpy(empleados[i].name, "0");
-        strcpy(empleados[i].lastName, "0");
+        for(i = 0; i < len; i++)
+        {
+            List[i].isEmpty = VACIO;
+            retorno = 0;
+        }
     }
+
+    return retorno;
 }
 
 
@@ -126,18 +129,18 @@ int menu()
 
 
 /////////////////////////////////////////////////////////////////////////Alta Empleado
-void altaDeUnEmpleado(eEmpleado unEmpleado[],int tam)
+void addEmployees(sEmployee List[],int len)
 {
     int lugar;
     int entero;
     int validacion;
     char texto[51];
 
-    lugar = buscarLibre(unEmpleado, tam);
+    lugar = findEmployeeById(List, len);
 
     if(lugar != -1)
     {
-        unEmpleado[lugar].id = lugar + 1;
+        List[lugar].id = lugar + 1;
 
         ////////////////////////////////////////////////////Alta nombre
         do
@@ -149,7 +152,7 @@ void altaDeUnEmpleado(eEmpleado unEmpleado[],int tam)
         }
         while(validacion == 1);
 
-        strcpy(unEmpleado[lugar].name, texto);
+        strcpy(List[lugar].name, texto);
 
         ////////////////////////////////////////////////////Alta apellido
         do
@@ -161,13 +164,13 @@ void altaDeUnEmpleado(eEmpleado unEmpleado[],int tam)
         }
         while(validacion == 1);
 
-        strcpy(unEmpleado[lugar].lastName, texto);
+        strcpy(List[lugar].lastName, texto);
 
         ////////////////////////////////////////////////////Alta salario
         do
         {
             printf("Ingrese el salario: ");
-            entero = scanf(" %f", &unEmpleado[lugar].salary);
+            entero = scanf(" %f", &List[lugar].salary);
             fflush(stdin);
         }
         while(entero==0);
@@ -176,12 +179,12 @@ void altaDeUnEmpleado(eEmpleado unEmpleado[],int tam)
         do
         {
             printf("Ingrese el sector: ");
-            entero = scanf(" %d", &unEmpleado[lugar].sector);
+            entero = scanf(" %d", &List[lugar].sector);
             fflush(stdin);
         }
         while(entero==0);
 
-        unEmpleado[lugar].isEmpty = LLENO;
+        List[lugar].isEmpty = LLENO;
 
     }
     else
@@ -222,13 +225,13 @@ int validarString(char texto[])
 
 
 /////////////////////////////////////////////////////////////////////////Buscar Espacio Libre
-int buscarLibre(eEmpleado unEmpleado[], int tam)
+int findEmployeeById(sEmployee List[], int len)
 {
     int indice = -1;
 
-    for (int i = 0; i < tam; i++)
+    for (int i = 0; i < len; i++)
     {
-        if (unEmpleado[i].isEmpty == VACIO)
+        if (List[i].isEmpty == VACIO)
         {
             indice = i;
             break;
@@ -244,7 +247,7 @@ int buscarLibre(eEmpleado unEmpleado[], int tam)
 
 
 /////////////////////////////////////////////////////////////////////////Baja Empleado
-void darDeBajaUnEmpleado(eEmpleado unEmpleado[], int tam)
+void removeEmployee(sEmployee List[], int len)
 {
     int id;
     char confirmar;
@@ -252,13 +255,13 @@ void darDeBajaUnEmpleado(eEmpleado unEmpleado[], int tam)
     printf("Ingrese la id del empleado a dar de baja: ");
     scanf(" %d",&id);
 
-    for(int i = 0; i < tam; i++)
+    for(int i = 0; i < len; i++)
     {
-        if (unEmpleado[i].isEmpty == LLENO && unEmpleado[i].id == id)
+        if (List[i].isEmpty == LLENO && List[i].id == id)
         {
             printf("\nEl empleado que selecciono es: \n");
             printf("   ID              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
-            mostrarUnEmpleado(unEmpleado[i]);
+            printOneEmployee(List[i]);
 
             printf("\n\nDesea dar de baja a ese empleado? S = SI: ");
             scanf(" %c",&confirmar);
@@ -267,7 +270,7 @@ void darDeBajaUnEmpleado(eEmpleado unEmpleado[], int tam)
 
             if(confirmar == 'S')
             {
-                unEmpleado[i].isEmpty = VACIO;
+                List[i].isEmpty = VACIO;
                 system("cls");
                 printf("Se dio de baja...\n");
                 system("pause");
@@ -293,7 +296,7 @@ void darDeBajaUnEmpleado(eEmpleado unEmpleado[], int tam)
 
 
 /////////////////////////////////////////////////////////////////////////Informar Promedios
-void informarPromedioSalarios(eEmpleado unEmpleado[], int tam)
+void printAverageSalaries(sEmployee List[], int len)
 {
     int i;
     int j;
@@ -303,11 +306,11 @@ void informarPromedioSalarios(eEmpleado unEmpleado[], int tam)
     float promedio = 0;
 
 
-    for(i = 0; i < tam; i++)
+    for(i = 0; i < len; i++)
     {
-        if(unEmpleado[i].isEmpty == LLENO)
+        if(List[i].isEmpty == LLENO)
         {
-            suma = suma + unEmpleado[i].salary;
+            suma = suma + List[i].salary;
             contador++;
         }
     }
@@ -332,9 +335,9 @@ void informarPromedioSalarios(eEmpleado unEmpleado[], int tam)
     printf("El PROMEDIO de los %d salarios es de: %.2f\n\n",contador,promedio);
 
 
-    for(j = 0; j < tam; j++)
+    for(j = 0; j < len; j++)
     {
-        if(unEmpleado[j].salary > promedio && unEmpleado[j].isEmpty == LLENO)
+        if(List[j].salary > promedio && List[j].isEmpty == LLENO)
         {
             if(contador == 1)
             {
@@ -355,11 +358,11 @@ void informarPromedioSalarios(eEmpleado unEmpleado[], int tam)
         printf("No hay salarios que superen el promedio...\n");
     }
 
-    for(j = 0; j < tam; j++)
+    for(j = 0; j < len; j++)
     {
-        if(unEmpleado[j].salary > promedio && unEmpleado[j].isEmpty == LLENO)
+        if(List[j].salary > promedio && List[j].isEmpty == LLENO)
         {
-            mostrarUnEmpleado(unEmpleado[j]);
+            printOneEmployee(List[j]);
         }
     }
 
@@ -375,7 +378,7 @@ void informarPromedioSalarios(eEmpleado unEmpleado[], int tam)
 
 
 /////////////////////////////////////////////////////////////////////////Modificar Empleado
-void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
+void modifyEmployee(sEmployee List[], int len)
 {
     int i;
     int entero;
@@ -396,14 +399,14 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
     printf("Ingrese la id del empleado a modificar: ");
     scanf(" %d",&id);
 
-    for(i = 0; i < tam; i++)
+    for(i = 0; i < len; i++)
     {
-        if(id == unEmpleado[i].id && unEmpleado[i].isEmpty == LLENO)
+        if(id == List[i].id && List[i].isEmpty == LLENO)
         {
             encontro = 1;
             printf("\nEL EMPLEADO INGRESADO ES:\n");
             printf("   ID              APELLIDO             NOMBRE         SALARIO     SECTOR    \n");
-            mostrarUnEmpleado(unEmpleado[i]);
+            printOneEmployee(List[i]);
 
             printf("\n\nQuiere modificar este empleado? 'S' = SI: ");
             scanf(" %c",&verificar);
@@ -438,7 +441,7 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
                         }
                         else
                         {
-                            strcpy(unEmpleado[i].name,nombre);
+                            strcpy(List[i].name,nombre);
 
                             printf("Se modifico el nombre...\n");
                             system("pause");
@@ -463,7 +466,7 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
                         }
                         else
                         {
-                            strcpy(unEmpleado[i].lastName,apellido);
+                            strcpy(List[i].lastName,apellido);
 
                             printf("Se modifico el apellido...\n");
                             system("pause");
@@ -480,7 +483,7 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
                         }
                         while(entero == 0);
 
-                        unEmpleado[i].salary = salario;
+                        List[i].salary = salario;
 
                         printf("Se modifico el salario...\n");
                         system("pause");
@@ -496,7 +499,7 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
                         }
                         while(entero == 0);
 
-                        unEmpleado[i].sector = sector;
+                        List[i].sector = sector;
 
                         printf("Se modifico el sector...\n");
                         system("pause");
@@ -525,30 +528,5 @@ void modificarUnEmpleado(eEmpleado unEmpleado[], int tam)
         system("cls");
         printf("No se encontro un empleado con esta id...\n");
         system("pause");
-    }
-}
-
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////Hardcodear Empleados
-void hardcodearEmpelados(eEmpleado empleados[])
-{
-    int idd[10] = {1,2,3,4,5,6,7,8,9,10};
-    int sectorr[10] = {5,3,1,3,2,1,4,2,1,2};
-    float salarioo[10] = {25000,20000,45000,30000,15000,12500,87000,6000,75000,11600};
-    char nombre[51][10] = {"Pepe","Roberto","Pepe","Ricardo","Enrique","Joaquin","Pedro","Juan","Francisco","Pepino"};
-    char apellido[51][10] = {"Pepe","Roberto","Pepe","Ricardo","Enrique","Joaquin","Pedro","Juan","Francisco","Pepino"};
-
-    for ( int i = 0; i < 10; i++ )
-    {
-        empleados[i].id = idd[i];
-        empleados[i].isEmpty = LLENO;
-        empleados[i].sector = sectorr[i];
-        empleados[i].salary = salarioo[i];
-        strcpy(empleados[i].name, nombre[i]);
-        strcpy(empleados[i].lastName, apellido[i]);
     }
 }
