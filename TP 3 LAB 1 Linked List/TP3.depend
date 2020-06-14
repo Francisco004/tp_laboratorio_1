@@ -201,3 +201,46 @@
 	"Controller.h"
 	"string.h"
 
+1592101511 source:c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"controller.h"
+	"Validacion.h"
+
+1592101511 c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\linkedlist.h
+
+1592101511 c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\employee.h
+
+1592101517 c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\parser.h
+
+1592101511 c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\controller.h
+	"Employee.h"
+
+1592101511 c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\validacion.h
+
+1592101511 source:c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\employee.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"Employee.h"
+	"LinkedList.h"
+	"Validacion.h"
+
+1592101517 source:c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\parser.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"string.h"
+	"Employee.h"
+	"LinkedList.h"
+
+1592101511 source:c:\users\fran_\desktop\awdawd\tp 3 lab 1 linked list\validacion.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"string.h"
+	"Validacion.h"
+

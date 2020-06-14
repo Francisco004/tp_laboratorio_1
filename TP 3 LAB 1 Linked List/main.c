@@ -13,7 +13,7 @@ int main()
     {
         system("cls");
         printf("                           Trabajo practico Numero 3                     \n");
-        printf("                              Francisco Rocha 1-B                          ");
+        printf("                              Francisco Rocha 1-A                          ");
         printf("\nMenu:\n1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n2. Cargar los datos de los empleados desde el archivo data.bin (modo binario).\n3. Alta de empleado\n4. Modificar datos de empleado\n5. Baja de empleado\n6. Listar empleados\n7. Ordenar empleados alfabeticamente\n8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n9. Guardar los datos de los empleados en el archivo data.bin (modo binario).\n10. Salir");
 
         printf("\n\nIngrese una opcion del menu: ");
